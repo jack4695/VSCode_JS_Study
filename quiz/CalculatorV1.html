@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+<style>
+    .calculator {
+        width: 300px;
+        margin: 20px auto;
+        border: 2px solid #dddddd;
+        border-radius: 10px;
+        background-color: #dddddd;
+    }
+
+    .display {
+        background-color: #70C738;
+        color: black;
+        font-size: 2em;
+        padding: 20px;
+        text-align: right;
+        border-radius: 10px;
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2px;
+        padding: 10px;
+        background-color: #dddddd;
+        border-radius: 10px;
+    }
+
+    button {
+        padding: 15px;
+        font-size: 1.2em;
+        border: 1px solid #dddddd;
+        cursor: pointer;
+        color: white;
+        border-radius: 10px;
+    }
+
+    .gray {
+      background-color: #393737;
+      color: white;
+    }
+
+    .lightgray {
+      background-color: #888888;
+      color: white;
+    }
+
+    .black {
+        background-color: #171616;
+    }
+
+    .orange {
+        background-color: #fa960a;
+    }
+
+    .span-2 {
+        grid-column: span 2;
+        background-color: #393737;
+    }
+
+</style>
+
+<script>
+    //마우스오버 시, 밝은 배경색으로 바꾸기
+    window.onload = function() {
+
+        let buttons = document.getElementsByTagName("button");
+
+        for(let i=0 ; i<buttons.length ; i++) {
+        buttons[i].addEventListener("mouseover",function() {
+            originColor = this.style.backgroundColor;
+            this.style.backgroundColor = "#918585";
+        });
+        }
+
+        for(let i=0 ; i<buttons.length ; i++) {
+        buttons[i].addEventListener("mouseout",function() {
+            this.style.backgroundColor = originColor;
+        });
+        }
+
+        let display = document.getElementById("display");
+        //위에서 이미 함
+        //let buttons = document.getElementsByTagName("button");
+
+        for (let i=0 ; i<buttons.length ; i++) {
+            buttons[i].addEventListener("click", function () {
+                let value = this.innerText;
+
+                //계산기버튼을 입력하면 디스플레이에 나오게 하기
+
+                //BackSpace 누르면, 문자열 자르기로 '1의자리'만 삭제
+
+                //C를 누르면, 0으로 초기화
+
+                //계산 기능
+
+
+            })
+        }
+
+    }
+
+    window.onload = () => {
+
+        
+    }
+</script>
+
+</head>
+<body>
+    <div class="calculator">
+        <div class="display" id="display">123+654</div>
+        <div class="buttons">
+            <button class="gray span-2">BackSpace</button>
+            <button class="gray span-2">C</button>
+            <button class="black">1</button>
+            <button class="black">2</button>
+            <button class="black">3</button>
+            <button class="orange">/</button>
+            <button class="black">4</button>
+            <button class="black">5</button>
+            <button class="black">6</button>
+            <button class="orange">x</button>
+            <button class="black">7</button>
+            <button class="black">8</button>
+            <button class="black">9</button>
+            <button class="orange">+</button>
+            <button class="black">=</button>
+            <button class="black">0</button>
+            <button class="black">.</button>
+            <button class="orange">-</button>
+        </div>
+    </div>
+</body>
+</html>

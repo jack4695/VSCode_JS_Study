@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //전역변수
+        var pTag, pSize;
+
+        //이 문서의 로드가 완료된 후 익명함수를 실행한다.
+        window.onload = function() {
+            //기사가 있는 p태그의 DOM요소를 얻어옴
+            pTag = document.getElementById("article");
+            //p태그에 적용된 폰트 크기를 읽어온 후 숫자로 변환한다.
+            pSize = parseInt(pTag.style.fontSize);
+        }
+
+        /*
+        JS에서 스타일을 적용하는 방법
+            HTML에서 스타일을 적용할 DOM요소를 얻어온다.
+            DOM 변수에 style을 추가하고, 뒷 부분에 CSS속성을 추가한다.
+            color와 같은 경우는 그대로 사용하면 되고
+            background-color와 같은 경우에는 하이픈(-)을 제거한 후 첫 문자를
+            대문자로 변경한다.
+
+            Ex) Dom변수.style.color = 'red';
+                Dom변수.style.backgroundColor = 'blue';
+        */
+        function fnArticle(flag) {
+            switch(flag) {
+                /*
+                폰트의 크기, 마진, 패딩과 같이 숫자로 속성값을 지정해야하는 경우에는
+                pt, px, em과 같은 단위를 반드시 추가해야한다. */
+            case "+":
+                pSize += 10;
+                pTag.style.fontSize = pSize+"px";
+                break;
+            case "-":
+                pSize -= 10;
+                pTag.style.fontSize = pSize+"px";
+                break;
+            case "R":
+                pTag.style.color = "red";
+                break;
+            case "G":
+                pTag.style.color = "green";
+                break;
+            case "B":
+                pTag.style.color = "blue";
+                break;
+            case "Bo":
+                pTag.style.fontWeight = "bold";
+                break;
+            case "No":
+                pTag.style.fontWeight = "normal";
+                break;
+            case "Ce":
+                pTag.style.textAlign = "center";
+                break;
+            case "Le":
+                pTag.style.textAlign = "left";
+                break;
+            case "B_red":
+                pTag.style.backgroundColor = "red";
+                break;
+            case "B_silver":
+                pTag.style.backgroundColor = "silver";
+                break;
+            case "B_white":
+                pTag.style.backgroundColor = "white";
+                break;
+            default:
+                pTag.style.color = "black";
+            }
+        }
+
+        /*
+        퀴즈] 글꼴바꾸기 버튼을 계속 누를때마다 아래 5가지
+        폰트가 토글되어 적용될수 있도록 함수를 정의하시오.
+        글꼴 : [Verdana, 굴림체, 휴먼옛체, 궁서, Impact]
+        */
+
+        //토글을 위한 전역변수 생성
+        let fontToggle = 0;
+
+        const setFont = () => {
+            const fontArray = ['Verdana', '굴림체', '휴먼옛체', '궁서', 'Impact'];
+            console.log('fontToggle', fontToggle);
+            //p태그 부분에 스타일을 적용한다. 5로 나눈 나머지는 0~4사이가 된다.
+            pTag.style.fontFamily = fontArray[++fontToggle%5];
+        }
+    </script>
+</head>
+<body>
+    <h2>자바스크립트로 CSS제어하기</h2>
+    <input type="button" value="글꼴바꾸기" id="abc" onclick="setFont();">
+    <fieldset>
+        <legend>신문기사</legend>
+        <button onclick="fnArticle('+');">+</button>
+        <button onclick="fnArticle('-');">-</button>
+        <button onclick="fnArticle('R');">Red</button>
+        <button onclick="fnArticle('G');">Green</button>
+        <button onclick="fnArticle('B');">Blue</button>
+        <button onclick="fnArticle('');">Black</button>
+        <button onclick="fnArticle('Bo');">볼드체</button>
+        <button onclick="fnArticle('No');">보통체</button>
+        <br>
+        <button onclick="fnArticle('Ce');">가운데정렬</button>
+        <button onclick="fnArticle('Le');">좌측정렬</button>
+        <button onclick="fnArticle('B_red');">배경색(red)</button>
+        <button onclick="fnArticle('B_silver');">배경색(silver)</button>
+        <button onclick="fnArticle('B_white');">배경색(white)</button>
+    </fieldset>
+    <p style="font-size: 12px;" id="article">
+        돌고래(문화어: 곱등어, 영어: dolphin)는 수생 포유류이자 이빨고래류의 
+        한 종류로, 바다에 사는 매우 영리한 포유동물이다. 돌고래는 아가미로 
+        숨을 쉬는 물고기와는 달리 허파로 숨을 쉬기 때문에 숨을 들이쉴 때마다 
+        물 위로 나와서 허파에 공기를 가득 채운다. 돌고래는 주로 새우나 멸치, 
+        정어리 같은 작은 물고기를 먹는다.
+
+        돌고래의 몸은 유선형이어서 물 속에서 시속 35 km로 빠르게 이동한다. 
+        수명은 40~50년, 몸길이는 2~4 m, 몸무게는 150~650 kg까지 그 종류가 
+        무척 다양하다. 참고로, 범고래, 흰 돌고래와는 근연종이다. 노 모양을 
+        한 앞다리인 지느러미 발이 한 쌍 있고 뒷다리는 없다. 등에는 등 
+        지느러미가 있으며, 지느러미 발과 등 지느러미는 수영할 때 
+        몸의 균형을 잡아 준다. 강한 꼬리 지느러미 구실을 하는 돌고래의 
+        꼬리는 물 속에서 돌고래가 앞으로 나아가는 추진력을 준다. 돌고래의 
+        피부는 매끄럽고 탄력이 있다. 20 - 50 마리가 떼지어 서식한다.
+
+        대표적인 천적으로 상어와 범고래가 있다. 폐로 호흡을 하기 때문에 
+        규칙적으로 물 위로 올라와 숨을 쉬어야 한다. 1분에 한두 차례 정수리에 
+        있는 숨 구멍인 분수공으로 호흡한다. 분수공은 물 속에 있을 때는 
+        강력한 근육으로 닫혀 있어 물이 들어가지 않는다. 일반적으로 돌고래는 
+        8시간 정도 잠을 잔다. 한 무리가 잠을 자는 동안 다른 무리들이 
+        불침번을 본다. 돌고래는 잠을 잘 때 한쪽 뇌만 잠을 자고 다른 
+        뇌는 숨을 쉬기 위해 잠을 자지 않는다. 양쪽 뇌가 번갈아 수면을 
+        취한다. 청각이 매우 발달하여 음파 탐지 능력이 있다. 운동장 거리의 
+        물체를 음파로 잡아내는데 많은 수가 있으면 더 넓은 거리의 물체들을 
+        파악하게 된다. 또한 시력도 좋고, 피부의 촉각도 예민하다. 돌고래는 
+        대부분 바다에서 서식하지만, 강 돌고래의 경우, 큰 하천이나 강에서 볼 수 있다.
+    </p>
+</body>
+</html>
